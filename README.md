@@ -2,9 +2,6 @@
 
 ## An easy way to install Nvidia Drivers 📦
 
-
-        ./command -i nvidia-460
-                  -i cuda
-                  -i cudnn
+<img src="images/endi.png" width="500" height="600">
 
 Easy, Right?                  
