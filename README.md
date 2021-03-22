@@ -2,6 +2,10 @@
 
 ## An easy way to install Nvidia Drivers 📦
 
-<img src="images/endi.png" width="500" height="600">
+```
+./endi -i nvidia
+./endi -i cuda
+./endi -i cudnn
+```
 
 Easy, Right?                  
