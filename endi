@@ -2,7 +2,7 @@
 
 #####################################################################
 #
-#                   Easy Nvidia Drive Installer
+#                   Easy Nvidia Driver Installer
 #
 #               Jaime Roque | https://github.com/jjrbfi 
 #
@@ -48,6 +48,8 @@ cudnn_driver(){
 
     sudo apt update
     sudo apt install libcudnn8 libcudnn8-dev
+    echo -e "\n\nDriver installed. You should reboot your computer."
+
 }
 
 
