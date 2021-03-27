@@ -9,6 +9,7 @@
 # source: 
 #   - https://docs.nvidia.com/cuda/cuda-installation-guide-linux
 #   - https://docs.nvidia.com/deeplearning/tensorrt/install-guide
+#   - https://developer.download.nvidia.com/compute/cuda/repos/
 #####################################################################
 
 
