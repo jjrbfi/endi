@@ -1,8 +1,8 @@
-# Easy Nvidia Driver Installer (endi) 🛠
+# Easy Nvidia Driver Installer (ENDI) 🛠
 
 #### An easy way to install Nvidia Drivers 📦
 
-
+---
 ##### Ubuntu 20.04 / Linux Mint
 Nvidia drivers:
 ```
@@ -16,7 +16,7 @@ CUDNN Drivers:
 ```
 ./endi -u cudnn
 ```
-
+---
 ##### Debian 10
 Nvidia drivers:
 ```
@@ -30,7 +30,7 @@ CUDNN Drivers:
 ```
 ./endi -d cudnn
 ```
-
+---
 ##### Easy, Right? 🙂
 
 
