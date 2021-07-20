@@ -6,68 +6,118 @@
 #
 #               Jaime Roque | https://github.com/jjrbfi 
 #
-# source: 
+# sources: 
 #   - https://docs.nvidia.com/cuda/cuda-installation-guide-linux
 #   - https://docs.nvidia.com/deeplearning/tensorrt/install-guide
 #   - https://developer.download.nvidia.com/compute/cuda/repos/
 #####################################################################
 
+##########  Debian 10  ##########
 
-nvidia_driver(){
-    echo "Updating repository and installing drivers"
-    sudo apt update
-    sudo mkdir /usr/lib/nvidia
-    sudo apt install nvidia-driver-460
+d_repositories(){
+# Adding buster-backports repository
+sudo echo "deb http://deb.debian.org/debian buster-backports main contrib non-free" >> /etc/apt/sources.list
 
-    echo -e "\n\nDriver installed. You should reboot your computer."
+# Adding Nvidia repo and key
+sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64/ /"
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64/7fa2af80.pub
+sudo add-apt-repository contrib non-free
+
+# Updating repositories
+sudo apt update
 }
 
 
-cuda_driver(){
-    echo "Installing Cuda"
+d_nvidia_driver(){
+    echo "Installing Nvidia drivers and Nvidia-smi"
+    sudo apt -y install nvidia-driver nvidia-smi
+    echo -e "\n\nDriver installed. You should reboot your computer."
+}
 
+d_cuda_driver(){
+    echo "Installing Cuda"
+    sudo apt -y install cuda
+    echo -e "\n\nCUDA installed. You should reboot your computer."
+}
+
+d_cudnn_driver(){
+    echo "Installing CUDNN"
+    sudo apt install libcudnn8 libcudnn8-dev
+    echo -e "\n\nCUDNN installed. You should reboot your computer."
+}
+
+
+
+##########  Ubuntu 20.04 / Linux Mint ##########
+
+u_repositories(){
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
     sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
     sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
     sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
     sudo apt update
+}
+
+u_nvidia_driver(){
+    echo "Updating repository and installing drivers"
+    sudo apt update
+    sudo mkdir /usr/lib/nvidia
+    sudo apt install nvidia-driver-470
+    echo -e "\n\nNvidia driver installed. You should reboot your computer."
+}
+
+u_cuda_driver(){
+    echo "Installing Cuda"
     sudo apt -y install cuda
     echo -e "# NVIDIA CUDA Toolkit\n
     export PATH=/usr/local/cuda-11.2/bin:$PATH\n
     export LD_LIBRARY_PATH=/usr/local/cuda-11.2/lib64\n
     export CPATH=/usr/local/cuda-11.2/targets/x86_64-linux/include:$CPATH" >> ~/.bashrc
     source .bashrc
-
-    echo -e "\n\nDriver installed. You should reboot your computer."
+    echo -e "\n\nCUDA driver installed. You should reboot your computer."
 }
 
-
-
-cudnn_driver(){
-
+u_cudnn_driver(){
     echo "Installing CUDNN"
-
-    sudo apt update
     sudo apt install libcudnn8 libcudnn8-dev
-    echo -e "\n\nDriver installed. You should reboot your computer."
-
+    echo -e "\n\nCUDNN installed. You should reboot your computer."
 }
 
 
-while getopts "ih" OPTION
+while getopts "udh" OPTION
 do
 	case $OPTION in
-		i)
+		u)
             if [ -z $2 ]; then
                 echo "Expected something after flag -i"
             elif [ $2 == "nvidia" ]; then
-                nvidia_driver 
+		u_repositories
+                u_nvidia_driver 
             elif [ $2 == "cuda" ]; then
-                cuda_driver 
+		u_repositories
+                u_cuda_driver 
             elif [ $2 == "cudnn" ]; then
-                cudnn_driver   
+		u_repositories
+                u_cudnn_driver   
             else
 			    echo "Error. Please check the info with -h"
+            exit
+            fi		;;
+
+                d)
+            if [ -z $2 ]; then
+                echo "Expected something after flag -i"
+            elif [ $2 == "nvidia" ]; then
+		d_repositories
+                d_nvidia_driver 
+            elif [ $2 == "cuda" ]; then
+		d_repositories
+                d_cuda_driver 
+            elif [ $2 == "cudnn" ]; then
+		d_repositories
+                d_cudnn_driver   
+            else
+                            echo "Error. Please check the info with -h"
             exit
             fi
 			;;
