@@ -73,7 +73,7 @@ u_cuda_driver(){
     export PATH=/usr/local/cuda-11.2/bin:$PATH\n
     export LD_LIBRARY_PATH=/usr/local/cuda-11.2/lib64\n
     export CPATH=/usr/local/cuda-11.2/targets/x86_64-linux/include:$CPATH" >> ~/.bashrc
-    source .bashrc
+    source ~/.bashrc
     echo -e "\n\nCUDA driver installed. You should reboot your computer."
 }
 
