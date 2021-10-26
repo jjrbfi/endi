@@ -17,7 +17,7 @@ CUDNN Drivers:
 ./endi -u cudnn
 ```
 ---
-##### Debian 10
+##### Debian 11
 Nvidia drivers:
 ```
 ./endi -d nvidia
@@ -35,6 +35,6 @@ CUDNN Drivers:
 
 
 #### Tested on ✅ :
-- [X] Debian 10
+- [X] Debian 11
 - [X] Ubuntu 20.04
 - [X] LinuxMint 20.02
