@@ -12,15 +12,15 @@
 #   - https://developer.download.nvidia.com/compute/cuda/repos/
 #####################################################################
 
-##########  Debian 10  ##########
+##########  Debian 11  ##########
 
 d_repositories(){
 # Adding buster-backports repository
 sudo echo "deb http://deb.debian.org/debian buster-backports main contrib non-free" >> /etc/apt/sources.list
 
 # Adding Nvidia repo and key
-sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64/ /"
-sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64/7fa2af80.pub
+sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/ /"
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/7fa2af80.pub
 sudo add-apt-repository contrib non-free
 
 # Updating repositories
@@ -62,7 +62,7 @@ u_nvidia_driver(){
     echo "Updating repository and installing drivers"
     sudo apt update
     sudo mkdir /usr/lib/nvidia
-    sudo apt install nvidia-driver-470
+    sudo apt install nvidia-driver
     echo -e "\n\nNvidia driver installed. You should reboot your computer."
 }
 
@@ -70,9 +70,6 @@ u_cuda_driver(){
     echo "Installing Cuda"
     sudo apt -y install cuda
     echo -e "# NVIDIA CUDA Toolkit\n
-    export PATH=/usr/local/cuda-11.2/bin:$PATH\n
-    export LD_LIBRARY_PATH=/usr/local/cuda-11.2/lib64\n
-    export CPATH=/usr/local/cuda-11.2/targets/x86_64-linux/include:$CPATH" >> ~/.bashrc
     source ~/.bashrc
     echo -e "\n\nCUDA driver installed. You should reboot your computer."
 }
