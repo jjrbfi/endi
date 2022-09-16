@@ -20,7 +20,7 @@ sudo echo "deb http://deb.debian.org/debian buster-backports main contrib non-fr
 
 # Adding Nvidia repo and key
 sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/ /"
-sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/7fa2af80.pub
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/3bf863cc.pub
 sudo add-apt-repository contrib non-free
 
 # Updating repositories
